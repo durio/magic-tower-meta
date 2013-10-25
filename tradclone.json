@@ -14,11 +14,13 @@
 		"key-y": 0,
 		"key-b": 0,
 		"key-r": 0,
+		"key-x": 0,
+		"npc-b": 0,
 		"success": 0,
 		"failure": 0,
 		"trade": 0
 	},
-	"failure-checks": ["health", "gold", "exp", "key-y", "key-b", "key-r", "failure"],
+	"failure-checks": ["health", "gold", "exp", "key-y", "key-b", "key-r", "key-x", "failure"],
 	"success-checks": ["success"],
 	"tile-values": {
 		"#####": {
@@ -302,6 +304,43 @@
 				]
 			}
 		},
+		"GgatX": {
+			"class": "cn.edu.tsinghua.academic.c00740273.magictower.standard.RegularTile",
+			"mixin": {
+				"class": "cn.edu.tsinghua.academic.c00740273.magictower.standard.mixin.Batch",
+				"mixins": [
+				{
+					"class": "cn.edu.tsinghua.academic.c00740273.magictower.standard.mixin.AttributeChange",
+					"attribute": "key-x",
+					"operator": "+",
+					"operand": -1
+				},
+				{
+					"class": "cn.edu.tsinghua.academic.c00740273.magictower.standard.mixin.OneTime",
+					"next": {
+						"class": "cn.edu.tsinghua.academic.c00740273.magictower.standard.RegularTile",
+						"mixin": {
+							"class": "cn.edu.tsinghua.academic.c00740273.magictower.standard.mixin.Accessible"
+						},
+						"rendering": {
+							"text": "..",
+							"text-codes": [
+								"background-white",
+								"foreground-black"
+							]
+						}
+					}
+				}
+				]
+			},
+			"rendering": {
+				"text": "Gx",
+				"text-codes": [
+					"background-yellow",
+					"foreground-black"
+				]
+			}
+		},
 		"NnpcA": {
 			"class": "cn.edu.tsinghua.academic.c00740273.magictower.standard.RegularTile",
 			"mixin": {
@@ -377,6 +416,49 @@
 			},
 			"rendering": {
 				"text": "..",
+				"text-codes": [
+					"background-white",
+					"foreground-black"
+				]
+			}
+		},
+		"NnpcB": {
+			"class": "cn.edu.tsinghua.academic.c00740273.magictower.standard.RegularTile",
+			"mixin": {
+				"class": "cn.edu.tsinghua.academic.c00740273.magictower.standard.mixin.Batch",
+				"mixins": [
+				{
+					"class": "cn.edu.tsinghua.academic.c00740273.magictower.standard.mixin.AttributeSelective",
+					"attribute": "npc-b",
+					"reference": 0,
+					"==": {
+						"class": "cn.edu.tsinghua.academic.c00740273.magictower.standard.mixin.Batch",
+						"mixins": [
+						{
+							"class": "cn.edu.tsinghua.academic.c00740273.magictower.standard.mixin.AttributeChange",
+							"attribute": "key-x",
+							"operator": "+",
+							"operand": 1
+						},
+						{
+							"class": "cn.edu.tsinghua.academic.c00740273.magictower.standard.mixin.AttributeChange",
+							"attribute": "npc-b",
+							"operator": "+",
+							"operand": 1
+						},
+						{
+							"class": "cn.edu.tsinghua.academic.c00740273.magictower.standard.mixin.Delegate",
+							"z": 2,
+							"x": 5,
+							"y": 1
+						}
+						]
+					}
+				}
+				]
+			},
+			"rendering": {
+				"text": "Nb",
 				"text-codes": [
 					"background-white",
 					"foreground-black"
@@ -991,7 +1073,7 @@
 			[ ".....", "#####", ".....", ".....", ".....", ".....", ".....", ".....", ".....", ".....", "....." ],
 			[ ".....", "#####", ".....", ".....", ".....", ".....", ".....", ".....", ".....", ".....", "....." ],
 			[ ".....", "#####", ".....", ".....", ".....", ".....", ".....", ".....", ".....", ".....", "....." ],
-			[ ".....", "#####", ".....", ".....", ".....", ".....", ".....", ".....", ".....", ".....", "....." ],
+			[ ".....", "GgatX", ".....", ".....", ".....", ".....", ".....", ".....", ".....", ".....", "....." ],
 			[ ".....", "#####", ".....", ".....", ".....", ".....", ".....", ".....", ".....", ".....", "....." ],
 			[ ".....", "#####", ".....", ".....", ".....", ".....", ".....", ".....", ".....", ".....", "....." ],
 			[ ".....", "#####", ".....", ".....", ".....", ".....", ".....", ".....", ".....", ".....", "....." ],
@@ -1009,7 +1091,7 @@
 			[ ".....", ".....", ".....", ".....", ".....", "#####", "#####", "GgatY", "#####", "#####", "....." ],
 			[ "#####", "#####", "#####", "#####", "MmstC", "#####", "MmstB", ".....", "MmstB", "#####", "....." ],
 			[ "#####", ".....", ".....", ".....", ".....", "#####", "Adef1", "MmstC", "KkeyY", "#####", "....." ],
-			[ "vdn03", ".....", "#####", "#####", "#####", "#####", "Aatt1", "Ahlt2", "KkeyY", "#####", "....." ]
+			[ "vdn03", ".....", "#####", "#####", "#####", "#####", "Aatt1", "Ahlt2", "KkeyY", "#####", "NnpcB" ]
 		],
 		[
 			[ "#####", "#####", "#####", "#####", "#####", "#####", "#####", "#####", "#####", "#####", "#####" ],
